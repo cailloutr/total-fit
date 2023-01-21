@@ -4,15 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
-
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.totalfit.ui.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/app_bar_title_home"
         tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.totalfit.ui.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+    <navigation android:id="@+id/login_graph"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/signInFragment"
+            android:name="com.example.totalfit.ui.login.SignInFragment"
+            android:label="@string/app_bar_title_sign_in"
+            tools:layout="@layout/fragment_sign_in" />
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.example.totalfit.ui.login.LoginFragment"
+            android:label="@string/app_bar_title_login"
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_loginFragment_to_signInFragment"
+                app:destination="@id/signInFragment" />
+            <action
+                android:id="@+id/action_loginFragment_to_homeFragment2"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/login_graph"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
+    <action
+        android:id="@+id/action_global_login"
+        app:destination="@id/login_graph"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true" />
 </navigation>
