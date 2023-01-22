@@ -12,13 +12,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.login.LoginFragment">
+            tools:context=".ui.login.SignInFragment">
 
             <TextView
                 android:id="@+id/fragment_login_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fragment_login_label"
+                android:text="@string/fragment_sign_in_label"
                 android:textSize="28sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="@string/fragment_login_email_edittext_hint"
+                android:hint="@string/fragment_sign_in_email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragment_login_label">
@@ -47,7 +47,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="@string/fragment_login_password_edittext_hint"
+                android:hint="@string/fragment_sign_in_password"
+                app:endIconMode="password_toggle"
+                app:endIconContentDescription="Password toggle"
+                app:endIconCheckable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragment_login_email_edittext">
@@ -58,24 +61,34 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/fragment_login_login_button"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_login_confirm_password_edittext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/fragment_login_label"
-                app:layout_constraintEnd_toEndOf="@id/fragment_login_password_edittext"
-                app:layout_constraintStart_toStartOf="@id/fragment_login_password_edittext"
-                app:layout_constraintTop_toBottomOf="@id/fragment_login_password_edittext" />
+                android:hint="@string/fragment_sign_in_confirm_password"
+                app:endIconMode="password_toggle"
+                app:endIconContentDescription="Password toggle"
+                app:endIconCheckable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_login_password_edittext">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/fragment_login_sign_in_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/fragment_login_sign_in_label"
-                app:layout_constraintEnd_toEndOf="@id/fragment_login_login_button"
-                app:layout_constraintStart_toStartOf="@id/fragment_login_login_button"
-                app:layout_constraintTop_toBottomOf="@id/fragment_login_login_button" />
+                android:layout_marginTop="16dp"
+                android:text="@string/fragment_sign_in_button_new"
+                app:layout_constraintEnd_toEndOf="@id/fragment_login_confirm_password_edittext"
+                app:layout_constraintStart_toStartOf="@id/fragment_login_confirm_password_edittext"
+                app:layout_constraintTop_toBottomOf="@id/fragment_login_confirm_password_edittext" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

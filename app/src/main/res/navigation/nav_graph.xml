@@ -23,10 +23,18 @@
             tools:layout="@layout/fragment_login">
             <action
                 android:id="@+id/action_loginFragment_to_signInFragment"
-                app:destination="@id/signInFragment" />
+                app:destination="@id/signInFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
             <action
                 android:id="@+id/action_loginFragment_to_homeFragment2"
                 app:destination="@id/homeFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@id/login_graph"
                 app:popUpToInclusive="true" />
         </fragment>
@@ -34,6 +42,10 @@
     <action
         android:id="@+id/action_global_login"
         app:destination="@id/login_graph"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
         app:popUpTo="@id/homeFragment"
         app:popUpToInclusive="true" />
 </navigation>

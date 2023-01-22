@@ -2,4 +2,27 @@
     <string name="app_name">TotalFit</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_bar_title_login">Login</string>
+    <string name="app_bar_title_sign_in">Sign in</string>
+    <string name="app_bar_title_home">Home</string>
+    <string name="snack_bar_message_sign_in_success">Usuário Cadastrado com Sucesso</string>
+    <string name="snack_bar_message_sign_in_error">Falha ao cadastrar usuário</string>
+    <string name="firebase_exception_unknown">Erro desconhecido</string>
+    <string name="firebase_expection_weak_password">Senha fraca</string>
+    <string name="firebase_exception_email">Email inválido</string>
+    <string name="sign_in_exception_empty_fields">Os campos de email ou senha não podem ficar vazios</string>
+    <string name="empty_field_exception">Campo obrigatório</string>
+    <string name="diferent_passwords_error">Senhas diferentes</string>
+    <string name="fragment_sign_in_confirm_password">Confirmar senha</string>
+    <string name="fragment_sign_in_password">Senha</string>
+    <string name="fragment_sign_in_email">Email</string>
+    <string name="fragment_sign_in_label">Criar nova conta</string>
+    <string name="fragment_sign_in_button_new">Criar conta</string>
+    <string name="menu_item_logout">Logout</string>
+    <string name="firebase_exception_invalid_credential">Email inválido</string>
+    <string name="firebase_exception_invalid_password">Senha inválida</string>
+    <string name="fragment_login_label">Entrar</string>
+    <string name="fragment_login_email_edittext_hint">Email</string>
+    <string name="fragment_login_password_edittext_hint">Senha</string>
+    <string name="fragment_login_sign_in_label">Criar conta</string>
 </resources>

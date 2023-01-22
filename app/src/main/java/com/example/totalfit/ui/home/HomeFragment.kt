@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.totalfit.databinding.FragmentLoginBinding
+import com.example.totalfit.databinding.FragmentHomeBinding
+import com.example.totalfit.ui.BaseFragment
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
-    var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +20,9 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
