@@ -12,14 +12,19 @@ import com.example.totalfit.extension.snackbar
 import com.example.totalfit.model.User
 import com.example.totalfit.repository.Resource
 import com.example.totalfit.ui.viewmodel.SignInViewModel
+import com.example.totalfit.ui.viewmodel.UiStateViewModel
+import com.example.totalfit.ui.viewmodel.VisualComponents
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignInFragment() : Fragment() {
 
     private val viewModel: SignInViewModel by viewModel()
+    private val uiStateViewModel: UiStateViewModel by activityViewModel()
+
     var _binding: FragmentSignInBinding? = null
     val binding get() = _binding!!
 
@@ -34,6 +39,7 @@ class SignInFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        uiStateViewModel.hasComponents = VisualComponents()
 
         binding.fragmentLoginSignInButton.setOnClickListener {
             singInNewUser()

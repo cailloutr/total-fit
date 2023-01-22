@@ -5,6 +5,7 @@ import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import com.example.totalfit.repository.FirebaseAuthRepository
 import com.example.totalfit.ui.viewmodel.LoginViewModel
 import com.example.totalfit.ui.viewmodel.SignInViewModel
+import com.example.totalfit.ui.viewmodel.UiStateViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,6 +20,7 @@ val daoModule = module {
 val viewModelModule = module {
     viewModel<LoginViewModel> { LoginViewModel(get()) }
     viewModel<SignInViewModel> { SignInViewModel(get()) }
+    viewModel<UiStateViewModel> { UiStateViewModel() }
 }
 
 val firebaseModule = module {

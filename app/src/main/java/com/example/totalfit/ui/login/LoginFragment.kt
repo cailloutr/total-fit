@@ -12,8 +12,11 @@ import com.example.totalfit.extension.snackbar
 import com.example.totalfit.model.User
 import com.example.totalfit.repository.Resource
 import com.example.totalfit.ui.viewmodel.LoginViewModel
+import com.example.totalfit.ui.viewmodel.UiStateViewModel
+import com.example.totalfit.ui.viewmodel.VisualComponents
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -22,6 +25,7 @@ class LoginFragment : Fragment() {
     val binding get() = _binding!!
 
     private val viewModel: LoginViewModel by viewModel()
+    private val uiStateViewModel: UiStateViewModel by activityViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +38,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        uiStateViewModel.hasComponents = VisualComponents()
 
         binding.fragmentLoginLoginButton.setOnClickListener {
             loginUser()
@@ -55,7 +60,6 @@ class LoginFragment : Fragment() {
             viewModel.login(user).observe(viewLifecycleOwner) { resource ->
                 if (resource.data) {
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment2)
-                    binding.root.snackbar(getString(R.string.snack_bar_message_sign_in_success))
                 } else {
                     showLoginError(resource, resource.error)
                 }

@@ -1,12 +1,7 @@
 package com.example.totalfit.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.totalfit.R
@@ -25,6 +20,10 @@ open class BaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        setupAppBarMenu()
+    }
+
+/*    private fun setupAppBarMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.logged_in_menu, menu)
@@ -38,8 +37,8 @@ open class BaseFragment : Fragment() {
                 return true
             }
 
-        }, viewLifecycleOwner)
-    }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }*/
 
     private fun checkIfIsLogged() {
         if (loginViewModel.isNotLogged()) {
