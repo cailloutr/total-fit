@@ -52,10 +52,19 @@
         android:id="@+id/exercisesFragment"
         android:name="com.example.totalfit.ui.exercicios.ExercisesFragment"
         android:label="@string/app_bar_title_exercicios"
-        tools:layout="@layout/fragment_exercises" />
+        tools:layout="@layout/fragment_exercises" >
+        <action
+            android:id="@+id/action_exercisesFragment_to_newExercicioFragment"
+            app:destination="@id/newExerciseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.totalfit.ui.profile.ProfileFragment"
         android:label="@string/app_bar_title_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/newExerciseFragment"
+        android:name="com.example.totalfit.ui.exercicios.NewExerciseFragment"
+        android:label="Novo Exercício"
+        tools:layout="@layout/fragment_new_exercise" />
 </navigation>

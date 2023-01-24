@@ -18,6 +18,8 @@ import com.example.totalfit.ui.viewmodel.LoginViewModel
 import com.example.totalfit.ui.viewmodel.UiStateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+//private const val TAG = "MainActivity"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         setupAppBarMenu()
 
         val navHostFragment =
@@ -40,6 +43,13 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
+        showUiStateComponents()
+
+//        setupActionBarWithNavController(navController, appBarConfiguration)
+        NavigationUI.setupWithNavController(binding.bottomNavigation,navController)
+    }
+
+    private fun showUiStateComponents() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             title = destination.label
             uiStateViewModel.components.observe(this) {
@@ -57,9 +67,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-        NavigationUI.setupWithNavController(binding.bottomNavigation,navController)
     }
 
     private fun setupAppBarMenu() {
