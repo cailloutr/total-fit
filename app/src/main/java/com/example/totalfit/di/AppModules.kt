@@ -26,7 +26,7 @@ val uiModule = module {
     factory<ImagePickerBottomSheet> { ImagePickerBottomSheet(get()) }
     factory<LoadImageUrlDialog> { LoadImageUrlDialog(get(), get()) }
     factory<ExercisesFragment> { ExercisesFragment() }
-    factory<ExercisesAdapter> { ExercisesAdapter() }
+    factory<ExercisesAdapter> { ExercisesAdapter(get()) }
     factory<NewExerciseFragment> { NewExerciseFragment() }
     factory<LoginFragment> { LoginFragment() }
     factory<SignInFragment> { SignInFragment() }

@@ -47,13 +47,19 @@ class ExercisesFragment : BaseFragment() {
 
         binding.floatActionButton.setOnClickListener {
             findNavController().navigate(
-                ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment()
+                ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment(null)
             )
         }
     }
 
     private fun setupAdapter() {
-        adapter = ExercisesAdapter()
+        adapter = ExercisesAdapter {
+            it.id?.let { id ->
+                findNavController().navigate(
+                    ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment(id)
+                )
+            }
+        }
         binding.fragmentExercisesRecyclerView.adapter = adapter
         exerciciosViewModel.listOfItems.observe(viewLifecycleOwner) {
             defineOperationStateValue(it)

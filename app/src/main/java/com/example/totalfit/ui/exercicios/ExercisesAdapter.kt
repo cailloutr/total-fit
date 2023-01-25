@@ -10,7 +10,11 @@ import com.example.totalfit.R
 import com.example.totalfit.databinding.ExercicioItemBinding
 import com.example.totalfit.model.Exercicio
 
-class ExercisesAdapter :
+//private const val TAG = "ExercisesAdapter"
+
+class ExercisesAdapter(
+    private val onClickListener: (Exercicio) -> Unit
+) :
     ListAdapter<Exercicio, ExercisesAdapter.ExercicioViewHolder>(DiffCallback) {
 
     inner class ExercicioViewHolder(
@@ -38,7 +42,12 @@ class ExercisesAdapter :
     }
 
     override fun onBindViewHolder(holder: ExercicioViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val exercicio = getItem(position)
+        holder.bind(exercicio)
+
+        holder.itemView.setOnClickListener {
+            onClickListener(exercicio)
+        }
     }
 
     companion object {

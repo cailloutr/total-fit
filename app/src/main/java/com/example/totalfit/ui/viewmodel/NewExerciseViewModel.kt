@@ -12,6 +12,11 @@ class NewExerciseViewModel(
 
     var imageUrl: Uri? = null
 
+//    private var _exercicio: MutableLiveData<Exercicio> = MutableLiveData<Exercicio>()
+//    val exercicio: LiveData<Exercicio> = _exercicio
+
+    fun getById(id: String): LiveData<Exercicio> = repository.getById(id)
+
     fun save(exercicio: Exercicio): LiveData<Boolean> = repository.save(exercicio)
 
 }

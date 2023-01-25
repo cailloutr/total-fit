@@ -9,6 +9,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import coil.load
 import com.example.totalfit.R
@@ -34,6 +35,12 @@ class NewExerciseFragment : BaseFragment() {
     private val viewModel: NewExerciseViewModel by viewModel()
 
     private lateinit var pickMedia: ActivityResultLauncher<PickVisualMediaRequest>
+
+    private val args: NewExerciseFragmentArgs by navArgs()
+
+    private val exercicioId: String? by lazy {
+        args.id
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +79,19 @@ class NewExerciseFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         uiStateViewModel.hasComponents = VisualComponents()
 
+        exercicioId?.let { id ->
+            viewModel.getById(id).observe(viewLifecycleOwner) {
+                if (it != null) {
+                    binding.content
+                        .newExerciseContentTextInputLayoutTitle.editText?.setText(it.nome)
+
+                    binding.content.newExerciseContentTextInputLayoutDescription.editText?.setText(
+                        it.observacoes
+                    )
+                }
+            }
+        }
+
         setupToolbar()
         setupNewImageFab()
     }
@@ -96,9 +116,11 @@ class NewExerciseFragment : BaseFragment() {
                 .editText?.text.toString()
 
         val exercicio = Exercicio(
+            id = exercicioId,
             nome = title,
             observacoes = description
         )
+
         viewModel.save(exercicio).observe(viewLifecycleOwner) { repositoryState ->
             repositoryState?.let { saved ->
                 if (saved) {

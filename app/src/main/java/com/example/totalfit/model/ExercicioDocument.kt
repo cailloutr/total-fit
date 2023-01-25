@@ -7,7 +7,7 @@ data class ExercicioDocument(
     val nome: String = "",
     val observacoes: String = ""
 ) {
-    fun toExercicio(): Exercicio {
+    fun toExercicio(id: String): Exercicio {
         val uri = try {
             Uri.parse(imageUrl)
         } catch (e: NullPointerException) {
@@ -15,6 +15,7 @@ data class ExercicioDocument(
         }
 
         return Exercicio(
+            id = id,
             imageUrl = uri,
             nome = nome,
             observacoes = observacoes

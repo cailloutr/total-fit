@@ -66,5 +66,10 @@
         android:id="@+id/newExerciseFragment"
         android:name="com.example.totalfit.ui.exercicios.NewExerciseFragment"
         android:label="Novo Exercício"
-        tools:layout="@layout/fragment_new_exercise" />
+        tools:layout="@layout/fragment_new_exercise" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
