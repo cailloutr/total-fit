@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="defaul_layout_margim">16dp</dimen>
+    <dimen name="default_layout_margin">16dp</dimen>
+    <dimen name="border_margin">8dp</dimen>
+
+    <dimen name="slider_indicator_width">100dp</dimen>
+    <dimen name="slider_indicator_height">3dp</dimen>
+    <dimen name="slider_corner_radius">16dp</dimen>
+
+    <dimen name="option_bottom_sheet_textview_drawable_padding">16dp</dimen>
+    <dimen name="option_bottom_sheet_textview_padding">8dp</dimen>
+    <dimen name="option_bottom_sheet_textview_textsize">16sp</dimen>
+    <dimen name="option_bottom_sheet_textview_margintop">32dp</dimen>
+
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.exercicios.NewExerciseFragment"
+    tools:showIn="@layout/fragment_new_exercise">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/new_exercise_content_text_input_layout_title"
+            style="@style/Widget.Totalfit.TextInputLayout.OutlinedBox.BorderlessEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_layout_margin"
+            android:layout_marginStart="@dimen/default_layout_margin"
+            android:layout_marginEnd="@dimen/default_layout_margin"
+            android:layout_marginBottom="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/new_exercise_content_edittext_title"
+                style="@style/Widget.Totalfit.TextInputLayout.OutlinedBox.BorderlessEditText.Description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textStyle="bold"
+                android:hint="@string/fragment_new_exercise_title_hint"
+                android:inputType="textCapWords"
+                android:maxLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/new_exercise_content_text_input_layout_description"
+            style="@style/Widget.Totalfit.TextInputLayout.OutlinedBox.BorderlessEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/default_layout_margin"
+            android:layout_marginEnd="@dimen/default_layout_margin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/new_exercise_content_edittext_description"
+                style="@style/Widget.Totalfit.TextInputLayout.OutlinedBox.BorderlessEditText.Description"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/fragment_new_exercise_description_hint"
+                android:inputType="textMultiLine" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>

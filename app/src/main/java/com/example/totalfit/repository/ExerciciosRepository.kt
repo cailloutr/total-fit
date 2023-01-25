@@ -1,49 +1,44 @@
 package com.example.totalfit.repository
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.totalfit.model.Exercicio
 import com.example.totalfit.model.ExercicioDocument
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 
+//private const val TAG = "ExerciciosRepository"
+
+private const val FIRESTORE_COLLECTION_PATH = "exercicios"
+
 class ExerciciosRepository(
     private val firestore: FirebaseFirestore
 ) {
-    fun getAll(): LiveData<List<Exercicio>> {
-        val liveData: MutableLiveData<List<Exercicio>> = MutableLiveData<List<Exercicio>>()
-        firestore.collection("exercicios")
-            .get()
-            .addOnSuccessListener {
-                it?.let { querySnapshot ->
-                    val exerciciosList = mutableListOf<Exercicio>()
-                    for (document in querySnapshot.documents) {
-                        val exercicioFirebase = document.toObject<ExercicioDocument>()
-                        exercicioFirebase?.let { exercicioFirebaseNotNull ->
-                            exerciciosList.add(exercicioFirebaseNotNull.toExercicio())
-                        }
+
+    fun getAll() = MutableLiveData<List<Exercicio>>().apply {
+        firestore.collection(FIRESTORE_COLLECTION_PATH).orderBy("nome")
+            .addSnapshotListener { snapShot, _ ->
+                snapShot?.let {
+                    val exerciciosList: List<Exercicio> = snapShot.documents.mapNotNull {
+                        it.toObject<ExercicioDocument>()?.toExercicio()
                     }
-                    liveData.value = exerciciosList
+                    value = exerciciosList
                 }
             }
-        return liveData
     }
 
-//    firestore.collection("exercicios")
-//    .get()
-//    .addOnSuccessListener
-//    {
-//        it?.let { querySnapshot ->
-//            for (document in querySnapshot.documents) {
-//                Log.i(com.example.totalfit.ui.TAG, "Firestore: ${document.data}")
-//            }
-//        }
-//    }
-//
-//    firestore.collection("exercicios")
-//    .add(exercicio)
-//    .addOnSuccessListener
-//    {
-//        Log.i(com.example.totalfit.ui.TAG, "produto salvo: ${it.id}")
-//    }
+    fun save(exercicio: Exercicio) = MutableLiveData<Boolean>().apply {
+        val exercicioDocument = ExercicioDocument(
+            nome = exercicio.nome,
+            observacoes = exercicio.observacoes
+        )
+
+        firestore.collection(FIRESTORE_COLLECTION_PATH)
+            .add(exercicioDocument)
+            .addOnSuccessListener {
+                value = true
+            }
+            .addOnFailureListener {
+                value = false
+            }
+    }
 }

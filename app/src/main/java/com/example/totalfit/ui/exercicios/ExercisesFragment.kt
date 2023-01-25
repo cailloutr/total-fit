@@ -9,7 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.example.totalfit.databinding.FragmentExercisesBinding
 import com.example.totalfit.enums.OperationState
-import com.example.totalfit.enums.OperationState.*
+import com.example.totalfit.enums.OperationState.FINISHED
+import com.example.totalfit.enums.OperationState.LOADING
 import com.example.totalfit.model.Exercicio
 import com.example.totalfit.ui.BaseFragment
 import com.example.totalfit.ui.viewmodel.ExerciciosViewModel
@@ -22,6 +23,7 @@ class ExercisesFragment : BaseFragment() {
 
     private var _binding: FragmentExercisesBinding? = null
     val binding get() = _binding!!
+    private lateinit var adapter: ExercisesAdapter
 
     private val uiStateViewModel: UiStateViewModel by activityViewModel()
     private val exerciciosViewModel: ExerciciosViewModel by viewModel()
@@ -51,7 +53,7 @@ class ExercisesFragment : BaseFragment() {
     }
 
     private fun setupAdapter() {
-        val adapter = ExercisesAdapter()
+        adapter = ExercisesAdapter()
         binding.fragmentExercisesRecyclerView.adapter = adapter
         exerciciosViewModel.listOfItems.observe(viewLifecycleOwner) {
             defineOperationStateValue(it)

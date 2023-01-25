@@ -4,10 +4,16 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import com.example.totalfit.repository.ExerciciosRepository
 import com.example.totalfit.repository.FirebaseAuthRepository
-import com.example.totalfit.ui.viewmodel.ExerciciosViewModel
-import com.example.totalfit.ui.viewmodel.LoginViewModel
-import com.example.totalfit.ui.viewmodel.SignInViewModel
-import com.example.totalfit.ui.viewmodel.UiStateViewModel
+import com.example.totalfit.ui.dialogs.ImagePickerBottomSheet
+import com.example.totalfit.ui.dialogs.LoadImageUrlDialog
+import com.example.totalfit.ui.exercicios.ExercisesAdapter
+import com.example.totalfit.ui.exercicios.ExercisesFragment
+import com.example.totalfit.ui.exercicios.NewExerciseFragment
+import com.example.totalfit.ui.login.LoginFragment
+import com.example.totalfit.ui.login.SignInFragment
+import com.example.totalfit.ui.profile.ProfileFragment
+import com.example.totalfit.ui.treinos.TreinosFragment
+import com.example.totalfit.ui.viewmodel.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,6 +21,18 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+
+val uiModule = module {
+    factory<ImagePickerBottomSheet> { ImagePickerBottomSheet(get()) }
+    factory<LoadImageUrlDialog> { LoadImageUrlDialog(get(), get()) }
+    factory<ExercisesFragment> { ExercisesFragment() }
+    factory<ExercisesAdapter> { ExercisesAdapter() }
+    factory<NewExerciseFragment> { NewExerciseFragment() }
+    factory<LoginFragment> { LoginFragment() }
+    factory<SignInFragment> { SignInFragment() }
+    factory<ProfileFragment> { ProfileFragment() }
+    factory<TreinosFragment> { TreinosFragment() }
+}
 
 val daoModule = module {
     single<FirebaseAuthRepository> { FirebaseAuthRepository(get()) }
@@ -27,6 +45,7 @@ val viewModelModule = module {
     viewModel<SignInViewModel> { SignInViewModel(get()) }
     viewModel<UiStateViewModel> { UiStateViewModel() }
     viewModel<ExerciciosViewModel> { ExerciciosViewModel(get()) }
+    viewModel<NewExerciseViewModel> { NewExerciseViewModel(get()) }
 }
 
 val firebaseModule = module {

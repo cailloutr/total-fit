@@ -35,5 +35,29 @@
     <string name="bottom_navigation_title_treinos">Treinos</string>
     <string name="bottom_navigation_title_exercicios">Exercícios</string>
     <string name="bottom_navigation_title_profile">Perfil</string>
+    <string name="fab_content_description">Botão adicionar novo item</string>
+    <string name="fragment_new_exercicio_fab_content_description">Add a new image</string>
+    <string name="lore_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at feugiat nulla. Mauris sed eros placerat, pulvinar neque at, rutrum dolor. Donec condimentum massa eu egestas pulvinar. Morbi est metus, elementum rutrum ultricies vitae, egestas vitae ipsum. Cras diam nunc, commodo quis iaculis ac, facilisis sed lorem. Donec ut ante porttitor urna venenatis pulvinar convallis nec sem. Sed nec egestas lorem. Sed commodo nunc odio. Cras egestas nisi lorem. Nullam turpis enim, commodo sit amet erat tempus, tincidunt iaculis metus. Donec justo libero, iaculis eget eros volutpat, dignissim bibendum ligula.
+
+Duis congue mi eget magna euismod pharetra. Nulla id suscipit sapien, ut mattis risus. Vestibulum convallis leo eros, vel pulvinar justo facilisis at. Sed a ex ut orci semper pulvinar. Nullam dapibus erat sapien, eget venenatis augue tempus ut. Quisque vel fringilla massa. Praesent volutpat felis nec erat interdum tristique.
+
+Fusce vel lobortis purus. Aliquam pulvinar lorem quis mollis vestibulum. Pellentesque dapibus turpis eros, quis tempor ante ornare et. Aenean egestas ornare lectus, et consequat eros. In in pretium nulla, sed efficitur nulla. Vivamus maximus, augue eu eleifend ultrices, arcu urna porttitor tortor, quis iaculis lacus mi sit amet libero. Praesent erat tellus, rutrum ac dui ut, semper pellentesque arcu. In hac habitasse platea dictumst. Praesent non enim at augue auctor sollicitudin. Vestibulum ante risus, iaculis non molestie nec, molestie eget velit.
+
+Fusce eu mi et nisl ornare volutpat a quis justo. Praesent accumsan, lectus ut laoreet suscipit, libero neque tempor ligula, et consequat ipsum risus et lacus. Vivamus nec condimentum lectus. Aliquam sed magna feugiat, maximus nunc ut, iaculis neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum pharetra dui sit amet molestie pretium. Vivamus facilisis efficitur neque venenatis luctus. Praesent tempor, nulla eget rutrum pellentesque, neque leo elementum lacus, ac rutrum mauris nisl vitae metus. Proin cursus, mauris ut sollicitudin imperdiet, lectus leo lobortis risus, sit amet congue nulla ligula quis tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce placerat nisi sem, ac cursus sapien pellentesque nec. Maecenas vel erat luctus, congue tortor in, molestie neque. Vestibulum quis velit tempus, auctor nisi nec, pharetra felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+Suspendisse diam mi, hendrerit quis commodo molestie, pretium dictum odio. Mauris iaculis magna in placerat pellentesque. Cras convallis quam ut tempus porttitor. Nulla blandit eget diam vel fermentum. Sed maximus congue felis, et sollicitudin felis imperdiet vel. Cras ac semper est. Integer turpis lectus, tristique venenatis mollis eu, fringilla vel lectus. In in nulla iaculis, fringilla ipsum a, finibus mi. Praesent neque nibh, fringilla at nulla sit amet, imperdiet porttitor libero. Phasellus ultricies gravida justo in feugiat. Donec gravida consequat augue eu varius.
+
+</string>
+    <string name="fragment_new_exercise_description_hint">Descriçao do Exercício</string>
+    <string name="fragment_new_exercise_title_hint">Título</string>
+    <string name="fragment_new_exercise_menu_save">Salvar</string>
+    <string name="bottom_navigation_option_gallery">Galeria</string>
+    <string name="bottom_navigation_option_internet">Internet</string>
+    <string name="bottom_sheet_menu_label">Escolha a opção</string>
+    <string name="load_image_from_web_image_view_content_description">Imagem ilustrativa do produto</string>
+    <string name="load_image_from_web_dialog_text_input_hint_url">URL da imagem</string>
+    <string name="load_image_from_web_button_label">Carregar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="load_image_dialog_confirm_label">Confirmar</string>
 
 </resources>

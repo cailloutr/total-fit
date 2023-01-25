@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Totalfit.TextInputLayout.OutlinedBox.BorderlessEditText"
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="Widget.Totalfit.TextInputLayout.OutlinedBox.BorderlessEditText.Description"
+        parent="Widget.MaterialComponents.TextView">
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:gravity">top</item>
+    </style>
+
+    <style name="SliderIndicator">
+        <item name="android:layout_width">@dimen/slider_indicator_width</item>
+        <item name="android:layout_height">@dimen/slider_indicator_height</item>
+        <item name="android:layout_marginTop">@dimen/default_layout_margin</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="cornerRadius">@dimen/slider_corner_radius</item>
+    </style>
+
+    <style name="Widget.MyNotes.TextView.OptionsBottomSheet.Item" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/border_margin</item>
+        <item name="android:layout_marginEnd">@dimen/border_margin</item>
+        <item name="android:drawablePadding">
+            @dimen/option_bottom_sheet_textview_drawable_padding
+        </item>
+        <item name="android:padding">@dimen/option_bottom_sheet_textview_padding</item>
+        <item name="android:textSize">@dimen/option_bottom_sheet_textview_textsize</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="backgroundTint">@color/white</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+</resources>
