@@ -59,5 +59,8 @@ Suspendisse diam mi, hendrerit quis commodo molestie, pretium dictum odio. Mauri
     <string name="load_image_from_web_button_label">Carregar</string>
     <string name="cancel">Cancelar</string>
     <string name="load_image_dialog_confirm_label">Confirmar</string>
+    <string name="exercises_fragment_simple_callback_on_swipe_delete">Item deletado</string>
+    <string name="exercises_fragment_simple_callback_on_swipe_undo">Desfazer</string>
+    <string name="slide_to_delete_label">Deslize para a direita para deletar</string>
 
 </resources>

@@ -56,7 +56,6 @@ class ExerciciosRepository(
     }*/
 
 
-
     fun save(exercicio: Exercicio) = MutableLiveData<Boolean>().apply {
         val exercicioDocument = ExercicioDocument(
             nome = exercicio.nome,
@@ -71,5 +70,11 @@ class ExerciciosRepository(
         document.set(exercicioDocument)
 
         value = true
+    }
+
+    fun remove(exercicioId: String) {
+        firestore.collection(FIRESTORE_COLLECTION_PATH)
+            .document(exercicioId)
+            .delete()
     }
 }
