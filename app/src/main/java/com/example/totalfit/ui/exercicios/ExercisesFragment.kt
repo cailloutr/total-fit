@@ -118,7 +118,7 @@ class ExercisesFragment : BaseFragment() {
 
     // Setup de swipe to delete action
     private val simpleCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
-        lateinit var deletedItem: Exercicio
+//        var deletedItem: Exercicio? = null
         var undoAction: Boolean = false
 
         override fun onMove(
@@ -131,8 +131,8 @@ class ExercisesFragment : BaseFragment() {
 
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             val position = viewHolder.adapterPosition
-            deletedItem = adapter.currentList[position]
-            val currentList = deleteItem(position)
+            val deletedItem = adapter.currentList[position]
+            deleteItem(position)
 
             val snackBar = Snackbar.make(
                 requireContext(),
@@ -140,7 +140,7 @@ class ExercisesFragment : BaseFragment() {
                 getString(com.example.totalfit.R.string.exercises_fragment_simple_callback_on_swipe_delete),
                 Snackbar.LENGTH_LONG
             ).setAction(getString(com.example.totalfit.R.string.exercises_fragment_simple_callback_on_swipe_undo)) {
-                undoDeleteItem(currentList, position)
+                undoDeleteItem(position, deletedItem)
             }.addCallback(object : Snackbar.Callback() {
                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                     super.onDismissed(transientBottomBar, event)
@@ -155,26 +155,22 @@ class ExercisesFragment : BaseFragment() {
                     super.onShown(sb)
                 }
             })
-
             snackBar.show()
         }
 
-        private fun undoDeleteItem(
-            currentList: MutableList<Exercicio>,
-            position: Int
-        ) {
-            currentList.add(deletedItem)
-            adapter.notifyItemInserted(position)
+        private fun deleteItem(position: Int) {
+            val currentList = adapter.currentList.toMutableList()
+            currentList.removeAt(position)
+//            adapter.notifyItemRemoved(position)
             adapter.submitList(currentList)
-            undoAction = true
         }
 
-        private fun deleteItem(position: Int): MutableList<Exercicio> {
+        private fun undoDeleteItem(position: Int, deletedItem: Exercicio) {
             val currentList = adapter.currentList.toMutableList()
-            currentList.remove(deletedItem)
-            adapter.notifyItemRemoved(position)
+            currentList.add(position, deletedItem)
+//            adapter.notifyItemInserted(position)
             adapter.submitList(currentList)
-            return currentList
+            undoAction = true
         }
 
         // Draws the color red bellow the view on swipe to indicate a delete action
