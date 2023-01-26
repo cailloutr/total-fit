@@ -1,5 +1,6 @@
 package com.example.totalfit.ui.exercicios
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
@@ -24,6 +26,7 @@ import com.example.totalfit.ui.viewmodel.UiStateViewModel
 import com.example.totalfit.ui.viewmodel.VisualComponents
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.ByteArrayOutputStream
 
 
 class NewExerciseFragment : BaseFragment() {
@@ -55,7 +58,8 @@ class NewExerciseFragment : BaseFragment() {
                 // photo picker.
                 if (uri != null) {
                     Log.d("PhotoPicker", "Selected URI: $uri")
-                    binding.fragmentNewExerciseImageView.load(uri) {
+                    viewModel.imageUrl = uri
+                    binding.fragmentNewExerciseImageView.load(viewModel.imageUrl) {
                         placeholder(R.drawable.ic_image)
                         error(R.drawable.ic_image)
                         crossfade(true)
@@ -121,9 +125,17 @@ class NewExerciseFragment : BaseFragment() {
             observacoes = description
         )
 
-        viewModel.save(exercicio).observe(viewLifecycleOwner) { repositoryState ->
-            repositoryState?.let { saved ->
-                if (saved) {
+
+        // Get the data from an ImageView as bytes
+        val imageView = binding.fragmentNewExerciseImageView
+        val bitmap = imageView.drawable?.toBitmap()
+        val baos = ByteArrayOutputStream()
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val image = baos.toByteArray()
+
+        viewModel.save(exercicio, image).observe(viewLifecycleOwner) { repositoryState ->
+            repositoryState?.let {
+                if (it) {
                     binding.root.snackbar("Exercício salvo")
                     findNavController().popBackStack()
                     return@observe

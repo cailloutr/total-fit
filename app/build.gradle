@@ -74,9 +74,11 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil:$coil_version")
 
-    // Declare the dependency for the Cloud Firestore library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
+    // Cloud Firestore library
     implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    // Cloud Storage library
+    implementation 'com.google.firebase:firebase-storage-ktx'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
