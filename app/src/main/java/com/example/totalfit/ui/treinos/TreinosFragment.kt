@@ -43,9 +43,9 @@ class TreinosFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         uiStateViewModel.hasComponents = VisualComponents(appBar = true, bottomNavigation = true)
 
-        getById("RPrM08jZ8gFXVI2lFJM4").observe(viewLifecycleOwner) {
-            Log.i(TAG, "Observe: $it")
-        }
+//        getById("RPrM08jZ8gFXVI2lFJM4").observe(viewLifecycleOwner) {
+//            Log.i(TAG, "Observe: $it")
+//        }
     }
 
     private fun getById(id: String): LiveData<List<String>> = MutableLiveData<List<String>>().apply{

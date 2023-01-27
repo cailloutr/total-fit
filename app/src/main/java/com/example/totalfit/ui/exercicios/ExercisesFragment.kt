@@ -119,7 +119,6 @@ class ExercisesFragment : BaseFragment() {
 
     // Setup de swipe to delete action
     private val simpleCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
-//        var deletedItem: Exercicio? = null
         var undoAction: Boolean = false
 
         override fun onMove(

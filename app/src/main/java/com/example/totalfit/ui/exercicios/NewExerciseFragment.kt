@@ -1,6 +1,7 @@
 package com.example.totalfit.ui.exercicios
 
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -60,12 +61,7 @@ class NewExerciseFragment : BaseFragment() {
                 if (uri != null) {
                     Log.d("PhotoPicker", "Selected URI: $uri")
                     viewModel.imageUrl = uri
-                    binding.fragmentNewExerciseImageView.load(viewModel.imageUrl) {
-                        placeholder(R.drawable.ic_image)
-                        error(R.drawable.ic_image)
-                        crossfade(true)
-                        allowHardware(true)
-                    }
+                    loadImage(viewModel.imageUrl,binding.fragmentNewExerciseImageView)
                 } else {
                     Log.d("PhotoPicker", "No media selected")
                 }
@@ -85,7 +81,12 @@ class NewExerciseFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         uiStateViewModel.hasComponents = VisualComponents()
 
+        loadExerciseDataIntoTheViews()
+        setupToolbar()
+        setupNewImageFab()
+    }
 
+    private fun loadExerciseDataIntoTheViews() {
         exercicioId?.let { id ->
             viewModel.getById(id).observe(viewLifecycleOwner) {
                 if (it != null) {
@@ -95,24 +96,23 @@ class NewExerciseFragment : BaseFragment() {
                         it.observacoes
                     )
 
-
-                    it.imageUrl.let { uri ->
-                        binding.fragmentNewExerciseImageView.apply {
-                            load(uri) {
-                                placeholder(R.drawable.ic_image)
-                                fallback(R.drawable.ic_image)
-                                crossfade(true)
-                                error(R.drawable.ic_exercise)
-                                scaleType = ImageView.ScaleType.CENTER_CROP
-                            }
-                        }
-                    }
+                    loadImage(it.imageUrl, binding.fragmentNewExerciseImageView)
                 }
             }
         }
+    }
 
-        setupToolbar()
-        setupNewImageFab()
+    private fun loadImage(uri: Uri?, view: ImageView) {
+        view.apply {
+            load(uri) {
+                placeholder(R.drawable.ic_image)
+                fallback(R.drawable.ic_image)
+                crossfade(true)
+                error(R.drawable.ic_exercise)
+                allowHardware(true)
+            }
+            scaleType = ImageView.ScaleType.CENTER_CROP
+        }
     }
 
     private fun setupToolbar() {
@@ -120,13 +120,13 @@ class NewExerciseFragment : BaseFragment() {
         binding.toolbar.inflateMenu(R.menu.fragment_new_exercise_menu)
         binding.toolbar.setOnMenuItemClickListener {
             if (it.itemId == R.id.fragment_new_exercise_menu_save) {
-                save()
+                saveNewExercise()
             }
             true
         }
     }
 
-    private fun save() {
+    private fun saveNewExercise() {
         val title =
             binding.newExerciseContentTextInputLayoutTitle.editText?.text.toString()
 
@@ -140,7 +140,28 @@ class NewExerciseFragment : BaseFragment() {
             observacoes = description
         )
 
+        if (viewModel.imageUrl != null) {
+            saveWithImage(exercicio)
+        } else {
+            saveWithoutImage(exercicio)
+        }
 
+    }
+
+    private fun saveWithoutImage(exercicio: Exercicio) {
+        viewModel.saveWithoutImage(exercicio).observe(viewLifecycleOwner) { repositoryState ->
+            repositoryState?.let {
+                if (it) {
+                    binding.root.snackbar("Exercício salvo")
+                    findNavController().popBackStack()
+                    return@observe
+                }
+                binding.root.snackbar("Erro ao salvar exercício")
+            }
+        }
+    }
+
+    private fun saveWithImage(exercicio: Exercicio) {
         // Get the data from an ImageView as bytes
         val imageView = binding.fragmentNewExerciseImageView
         val bitmap = imageView.drawable?.toBitmap()

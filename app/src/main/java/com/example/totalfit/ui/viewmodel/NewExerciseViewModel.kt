@@ -22,4 +22,11 @@ class NewExerciseViewModel(
 
             value = true
         }
+
+    fun saveWithoutImage(exercicio: Exercicio): LiveData<Boolean> =
+        MutableLiveData<Boolean>().apply {
+            repository.save(exercicio)
+
+            value = true
+        }
 }

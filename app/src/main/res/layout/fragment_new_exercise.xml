@@ -20,11 +20,12 @@
         android:id="@+id/fragment_new_exercise_image_view"
         android:layout_width="0dp"
         android:layout_height="250dp"
-        android:fitsSystemWindows="true"
-        tools:src="@drawable/ic_exercise"
+        android:src="@drawable/ic_image"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:contentDescription="@string/fragment_new_exercise_image_view_content_description" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -88,15 +89,17 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/new_image_fab"
+        style="@style/Widget.App.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/fragment_new_exercise_image_view"
+        android:contentDescription="@string/fragment_new_exercicio_fab_content_description"
+        android:src="@drawable/ic_add_a_photo"
+        android:tint="@color/secondaryTextColor"
         app:layout_constraintBottom_toBottomOf="@id/fragment_new_exercise_image_view"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
-        android:contentDescription="@string/fragment_new_exercicio_fab_content_description"
-        android:src="@drawable/ic_add_a_photo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_new_exercise_image_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
