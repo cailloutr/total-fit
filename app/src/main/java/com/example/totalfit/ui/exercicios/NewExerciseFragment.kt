@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -83,15 +84,28 @@ class NewExerciseFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         uiStateViewModel.hasComponents = VisualComponents()
 
+
         exercicioId?.let { id ->
             viewModel.getById(id).observe(viewLifecycleOwner) {
                 if (it != null) {
-                    binding.content
-                        .newExerciseContentTextInputLayoutTitle.editText?.setText(it.nome)
+                    binding.newExerciseContentTextInputLayoutTitle.editText?.setText(it.nome)
 
-                    binding.content.newExerciseContentTextInputLayoutDescription.editText?.setText(
+                    binding.newExerciseContentTextInputLayoutDescription.editText?.setText(
                         it.observacoes
                     )
+
+
+                    it.imageUrl.let { uri ->
+                        binding.fragmentNewExerciseImageView.apply {
+                            load(uri) {
+                                placeholder(R.drawable.ic_image)
+                                fallback(R.drawable.ic_image)
+                                crossfade(true)
+                                error(R.drawable.ic_exercise)
+                                scaleType = ImageView.ScaleType.CENTER_CROP
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -101,9 +115,9 @@ class NewExerciseFragment : BaseFragment() {
     }
 
     private fun setupToolbar() {
-        binding.fragmentNewExerciseToolbar.setupWithNavController(findNavController())
-        binding.fragmentNewExerciseToolbar.inflateMenu(R.menu.fragment_new_exercise_menu)
-        binding.fragmentNewExerciseToolbar.setOnMenuItemClickListener {
+        binding.toolbar.setupWithNavController(findNavController())
+        binding.toolbar.inflateMenu(R.menu.fragment_new_exercise_menu)
+        binding.toolbar.setOnMenuItemClickListener {
             if (it.itemId == R.id.fragment_new_exercise_menu_save) {
                 save()
             }
@@ -113,10 +127,10 @@ class NewExerciseFragment : BaseFragment() {
 
     private fun save() {
         val title =
-            binding.content.newExerciseContentTextInputLayoutTitle.editText?.text.toString()
+            binding.newExerciseContentTextInputLayoutTitle.editText?.text.toString()
 
         val description =
-            binding.content.newExerciseContentTextInputLayoutDescription
+            binding.newExerciseContentTextInputLayoutDescription
                 .editText?.text.toString()
 
         val exercicio = Exercicio(

@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Widget.Totalfit.TextInputLayout.OutlinedBox.BorderlessEditText"
-        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>
         <item name="hintEnabled">false</item>
@@ -22,7 +22,7 @@
         <item name="cornerRadius">@dimen/slider_corner_radius</item>
     </style>
 
-    <style name="Widget.MyNotes.TextView.OptionsBottomSheet.Item" parent="Widget.MaterialComponents.TextView">
+    <style name="Widget.Totalfit.TextView.OptionsBottomSheet.Item" parent="Widget.MaterialComponents.TextView">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/border_margin</item>
