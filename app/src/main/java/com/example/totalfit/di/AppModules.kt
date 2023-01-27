@@ -19,6 +19,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -36,7 +38,7 @@ val uiModule = module {
 
 val daoModule = module {
     single<FirebaseAuthRepository> { FirebaseAuthRepository(get()) }
-    single<ExerciciosRepository> { ExerciciosRepository(get()) }
+    single<ExerciciosRepository> { ExerciciosRepository(get(), get()) }
     single<SharedPreferences> { getDefaultSharedPreferences(get()) }
 }
 
@@ -51,4 +53,5 @@ val viewModelModule = module {
 val firebaseModule = module {
     single<FirebaseAuth> { Firebase.auth }
     single<FirebaseFirestore> { Firebase.firestore }
+    single<StorageReference> { Firebase.storage.reference }
 }

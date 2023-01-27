@@ -14,7 +14,7 @@
 
     <TextView
         android:id="@+id/bottom_sheet_menu_option_label"
-        style="@style/Widget.MyNotes.TextView.OptionsBottomSheet.Item"
+        style="@style/Widget.Totalfit.TextView.OptionsBottomSheet.Item"
         android:layout_marginTop="@dimen/option_bottom_sheet_textview_margintop"
         android:text="@string/bottom_sheet_menu_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/bottom_sheet_menu_option_gallery"
-        style="@style/Widget.MyNotes.TextView.OptionsBottomSheet.Item"
+        style="@style/Widget.Totalfit.TextView.OptionsBottomSheet.Item"
         android:layout_marginTop="@dimen/option_bottom_sheet_textview_margintop"
         android:clickable="true"
         android:focusable="true"
@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/bottom_sheet_menu_option_web"
-        style="@style/Widget.MyNotes.TextView.OptionsBottomSheet.Item"
+        style="@style/Widget.Totalfit.TextView.OptionsBottomSheet.Item"
         android:layout_marginTop="@dimen/border_margin"
         android:layout_marginBottom="@dimen/border_margin"
         android:clickable="true"

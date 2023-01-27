@@ -94,6 +94,7 @@ class ExercisesFragment : BaseFragment() {
         }
     }
 
+    //TODO: Melhorar a questão do status
     private fun showProgressBar(operationState: OperationState) {
         when (operationState) {
             LOADING -> {

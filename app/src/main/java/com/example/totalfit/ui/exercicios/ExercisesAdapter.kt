@@ -21,13 +21,13 @@ class ExercisesAdapter(
         private val binding: ExercicioItemBinding
     ) : ViewHolder(binding.root) {
         fun bind(exercicio: Exercicio) {
-            binding.exercicioItemImage.load(exercicio.imageUrl) {
-                placeholder(R.drawable.ic_exercise)
-                error(R.drawable.ic_exercise)
-                crossfade(true)
-            }
             binding.exercicioItemName.text = exercicio.nome
             binding.exercicioItemDescription.text = exercicio.observacoes
+            binding.exercicioItemImage.load(exercicio.imageUrl) {
+                placeholder(R.drawable.ic_exercise)
+                fallback(R.drawable.ic_exercise)
+                error(R.drawable.ic_exercise)
+            }
         }
     }
 
