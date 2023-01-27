@@ -64,6 +64,7 @@ class NewExerciseFragment : BaseFragment() {
                         placeholder(R.drawable.ic_image)
                         error(R.drawable.ic_image)
                         crossfade(true)
+                        allowHardware(true)
                     }
                 } else {
                     Log.d("PhotoPicker", "No media selected")
