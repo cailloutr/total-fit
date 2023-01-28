@@ -52,26 +52,25 @@ class ExercisesFragment : BaseFragment() {
         setupUiState()
         setupAdapter()
 
-        navigateToNewExercicioFragment(null)
+        binding.floatActionButton.setOnClickListener {
+            navigateToNewExercicioFragment(null)
+        }
+
     }
 
     private fun navigateToNewExercicioFragment(id: String?) {
-        binding.floatActionButton.setOnClickListener {
-            findNavController().navigate(
-                ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment(id)
-            )
-        }
+        findNavController().navigate(
+            ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment(id)
+        )
     }
 
     private fun setupAdapter() {
         adapter = ExercisesAdapter {
             it.id?.let { id ->
-//                findNavController().navigate(
-//                    ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment(id)
-//                )
                 navigateToNewExercicioFragment(id)
             }
         }
+
         binding.fragmentExercisesRecyclerView.adapter = adapter
 
         val itemTouchHelper = ItemTouchHelper(simpleCallback)
@@ -145,22 +144,23 @@ class ExercisesFragment : BaseFragment() {
                 binding.root,
                 getString(com.example.totalfit.R.string.exercises_fragment_simple_callback_on_swipe_delete),
                 Snackbar.LENGTH_LONG
-            ).setAction(getString(com.example.totalfit.R.string.exercises_fragment_simple_callback_on_swipe_undo)) {
-                undoDeleteItem(position, deletedItem)
-            }.addCallback(object : Snackbar.Callback() {
-                override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                    super.onDismissed(transientBottomBar, event)
+            )
+                .setAction(getString(com.example.totalfit.R.string.exercises_fragment_simple_callback_on_swipe_undo)) {
+                    undoDeleteItem(position, deletedItem)
+                }.addCallback(object : Snackbar.Callback() {
+                    override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                        super.onDismissed(transientBottomBar, event)
 
-                    if (!undoAction) {
-                        deletedItem.id?.let { exerciciosViewModel.remove(it) }
+                        if (!undoAction) {
+                            deletedItem.id?.let { exerciciosViewModel.remove(it) }
+                        }
+                        undoAction = false
                     }
-                    undoAction = false
-                }
 
-                override fun onShown(sb: Snackbar?) {
-                    super.onShown(sb)
-                }
-            })
+                    override fun onShown(sb: Snackbar?) {
+                        super.onShown(sb)
+                    }
+                })
             snackBar.show()
         }
 
