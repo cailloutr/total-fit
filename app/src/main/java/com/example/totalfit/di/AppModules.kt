@@ -58,6 +58,7 @@ val viewModelModule = module {
     viewModel<NewExerciseViewModel> { NewExerciseViewModel(get()) }
     viewModel<NewTreinoViewModel> { NewTreinoViewModel(get(), get()) }
     viewModel<TreinosViewModel> { TreinosViewModel(get()) }
+    viewModel<ProfileViewModel> { ProfileViewModel(get()) }
 }
 
 val firebaseModule = module {

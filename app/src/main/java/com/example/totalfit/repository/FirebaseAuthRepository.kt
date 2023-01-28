@@ -11,7 +11,13 @@ import com.google.firebase.ktx.Firebase
 
 private const val TAG = "FirebaseAuthRepository"
 
-class FirebaseAuthRepository(private val firebaseAuth: FirebaseAuth) {
+class FirebaseAuthRepository(
+    private val firebaseAuth: FirebaseAuth
+) {
+
+    fun getUser(): LiveData<FirebaseUser> = MutableLiveData<FirebaseUser>().apply{
+        value = firebaseAuth.currentUser
+    }
 
     fun login(user: User): LiveData<Resource<Boolean>> {
         val livedata = MutableLiveData<Resource<Boolean>>()

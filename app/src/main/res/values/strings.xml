@@ -89,5 +89,6 @@ Suspendisse diam mi, hendrerit quis commodo molestie, pretium dictum odio. Mauri
     <string name="treino_item_data">Data: %s</string>
     <string name="treino_item_exercicios_label">Exercicios:</string>
     <string name="treino_item_image_view_content_description">Imagem indicando uma ação de click</string>
+    <string name="fragment_profile_user_image_content_description">Imagem de perfil do usuário</string>
 
 </resources>
