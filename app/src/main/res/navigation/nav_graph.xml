@@ -8,7 +8,15 @@
         android:id="@+id/treinosFragment"
         android:name="com.example.totalfit.ui.treinos.TreinosFragment"
         android:label="@string/app_bar_title_treinos"
-        tools:layout="@layout/fragment_treinos" />
+        tools:layout="@layout/fragment_treinos" >
+        <action
+            android:id="@+id/action_treinosFragment_to_newTreinoFragment"
+            app:destination="@id/newTreinoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <navigation android:id="@+id/login_graph"
         app:startDestination="@id/loginFragment">
         <fragment
@@ -71,6 +79,16 @@
         android:name="com.example.totalfit.ui.exercicios.NewExerciseFragment"
         android:label="Novo Exercício"
         tools:layout="@layout/fragment_new_exercise" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/newTreinoFragment"
+        android:name="com.example.totalfit.ui.treinos.NewTreinoFragment"
+        android:label="Novo Treino"
+        tools:layout="@layout/fragment_new_treino" >
         <argument
             android:name="id"
             app:argType="string"

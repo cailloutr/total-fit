@@ -30,12 +30,13 @@ class MainActivity : AppCompatActivity() {
     private val uiStateViewModel: UiStateViewModel by viewModel()
     private val loginViewModel: LoginViewModel by viewModel()
 
+    var hasMenu: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        setupAppBarMenu()
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -71,26 +72,41 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         binding.bottomNavigation.visibility = View.GONE
                     }
+                    if (hasComponents.logoutMenu) {
+                        if (!hasMenu) {
+                            setupAppBarMenu(menuProvider)
+                        }
+                    } else {
+                        removeAppBarMenu(menuProvider)
+                    }
                 }
             }
         }
     }
 
-    private fun setupAppBarMenu() {
-        addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.logged_in_menu, menu)
-            }
+    val menuProvider: MenuProvider = object : MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menuInflater.inflate(R.menu.logged_in_menu, menu)
+        }
 
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId == R.id.menu_item_logou) {
-                    loginViewModel.logout()
-                    navigateToLogin()
-                }
-                return true
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            if (menuItem.itemId == R.id.menu_item_logou) {
+                loginViewModel.logout()
+                navigateToLogin()
             }
+            return true
+        }
 
-        }, this, Lifecycle.State.RESUMED)
+    }
+
+    private fun setupAppBarMenu(menuProvider: MenuProvider) {
+        addMenuProvider(menuProvider, this, Lifecycle.State.RESUMED)
+        hasMenu = true
+    }
+
+    private fun removeAppBarMenu(menuProvider: MenuProvider) {
+        removeMenuProvider(menuProvider)
+        hasMenu = false
     }
 
     override fun onSupportNavigateUp(): Boolean {

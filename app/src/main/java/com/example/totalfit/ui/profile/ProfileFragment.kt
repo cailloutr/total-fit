@@ -28,7 +28,11 @@ class ProfileFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        uiStateViewModel.hasComponents = VisualComponents(appBar = true, bottomNavigation = true)
+        uiStateViewModel.hasComponents = VisualComponents(
+            appBar = true,
+            bottomNavigation = true,
+            logoutMenu = true
+        )
     }
 
     override fun onDestroyView() {

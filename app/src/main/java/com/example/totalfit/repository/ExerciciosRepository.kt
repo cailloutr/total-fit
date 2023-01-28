@@ -10,6 +10,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.StorageReference
 
 private const val TAG = "ExerciciosRepository"
+private const val FIRESTORE_COLLECTION_PATH = "exercicios"
 
 class ExerciciosRepository(
     private val firestore: FirebaseFirestore,
@@ -65,31 +66,32 @@ class ExerciciosRepository(
             .delete()
     }
 
-    fun imageUpload(id: String, image: ByteArray): LiveData<Boolean> = MutableLiveData<Boolean>().apply {
-        // Create a reference to 'exercicios/id.jpg'
-        val imagesRef = storageReference.child("exercicios/$id.jpg")
+    fun imageUpload(id: String, image: ByteArray): LiveData<Boolean> =
+        MutableLiveData<Boolean>().apply {
+            // Create a reference to 'exercicios/id.jpg'
+            val imagesRef = storageReference.child("exercicios/$id.jpg")
 
-        val uploadTask = imagesRef.putBytes(image)
-        uploadTask.addOnFailureListener {
-            value = false
-        }.addOnSuccessListener {
-            value = true
+            val uploadTask = imagesRef.putBytes(image)
+            uploadTask.addOnFailureListener {
+                value = false
+            }.addOnSuccessListener {
+                value = true
 
-            storageReference.child("exercicios/$id.jpg").downloadUrl.addOnSuccessListener { uri ->
-                Log.i(TAG, "imageUpload: $uri")
-                firestore.collection(FIRESTORE_COLLECTION_PATH)
-                    .document(id)
-                    .update(
-                        mapOf("imageUrl" to uri?.toString())
-                    )
-            }.addOnFailureListener {
-                Log.i(TAG, "imageUpload: Fail")
+                storageReference.child("exercicios/$id.jpg").downloadUrl.addOnSuccessListener { uri ->
+                    Log.i(TAG, "imageUpload: $uri")
+                    firestore.collection(FIRESTORE_COLLECTION_PATH)
+                        .document(id)
+                        .update(
+                            mapOf("imageUrl" to uri?.toString())
+                        )
+                }.addOnFailureListener {
+                    Log.i(TAG, "imageUpload: Fail")
+                }
             }
+
         }
 
-    }
-
-    companion object {
-        val FIRESTORE_COLLECTION_PATH = "exercicios"
-    }
+//    companion object {
+//        private const val FIRESTORE_COLLECTION_PATH = "exercicios"
+//    }
 }

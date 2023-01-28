@@ -112,7 +112,8 @@ class ExercisesFragment : BaseFragment() {
     private fun setupUiState() {
         uiStateViewModel.hasComponents = VisualComponents(
             appBar = true,
-            bottomNavigation = true
+            bottomNavigation = true,
+            logoutMenu = true
         )
     }
 

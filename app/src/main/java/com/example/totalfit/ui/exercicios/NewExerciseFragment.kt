@@ -117,9 +117,9 @@ class NewExerciseFragment : BaseFragment() {
 
     private fun setupToolbar() {
         binding.toolbar.setupWithNavController(findNavController())
-        binding.toolbar.inflateMenu(R.menu.fragment_new_exercise_menu)
+        binding.toolbar.inflateMenu(R.menu.save_menu)
         binding.toolbar.setOnMenuItemClickListener {
-            if (it.itemId == R.id.fragment_new_exercise_menu_save) {
+            if (it.itemId == R.id.menu_save) {
                 saveNewExercise()
             }
             true

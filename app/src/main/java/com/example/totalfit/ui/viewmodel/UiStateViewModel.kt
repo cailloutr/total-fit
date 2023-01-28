@@ -22,6 +22,7 @@ class UiStateViewModel : ViewModel() {
 
 class VisualComponents(
     val appBar: Boolean = false,
+    val logoutMenu: Boolean = false,
     val bottomNavigation: Boolean = false
 ) {
 

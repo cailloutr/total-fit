@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_margin="@dimen/border_margin"
+    app:cardCornerRadius="13dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/exercicio_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Snatch" />
+
+        <TextView
+            android:id="@+id/exercicio_item_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/exercicio_item_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/exercicio_item_name"
+            app:layout_constraintTop_toTopOf="@id/exercicio_item_name"
+            tools:text="80% da PR" />
+
+        <ImageButton
+            android:id="@+id/exercicio_item_button_add"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/circular_button_add"
+            android:contentDescription="@string/exercicio_item_button_content_description"
+            android:src="@drawable/ic_add"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/exercicio_item_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/exercicio_item_description" />
+
+        <ImageButton
+            android:id="@+id/exercicio_item_button_remove"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/circular_button_remove"
+            android:contentDescription="@string/exercicio_item_button_content_description"
+            android:src="@drawable/ic_remove"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/exercicio_item_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/exercicio_item_description" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
