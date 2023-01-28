@@ -15,28 +15,29 @@ class TreinosRepository(
     private val firestore: FirebaseFirestore
 ) {
 
-    private fun getById(id: String): LiveData<List<String>> = MutableLiveData<List<String>>().apply{
-        firestore.collection("treino").document(id)
-            .addSnapshotListener { s, _ ->
-                s?.let { document ->
-                    document.toObject<TreinoDocument>()?.toTreino(document.id)
-                        ?.let { treino ->
-                            Log.i(TAG, "Firestore: ${treino.exercicios}")
-                            value = treino.exercicios
-                        }
+    fun getById(id: String): LiveData<Treino> =
+        MutableLiveData<Treino>().apply {
+            firestore.collection(FIRESTORE_COLLECTION_PATH).document(id)
+                .addSnapshotListener { s, _ ->
+                    s?.let { document ->
+                        document.toObject<TreinoDocument>()?.toTreino(document.id)
+                            ?.let { treino ->
+                                Log.i(TAG, "Firestore: ${treino.exercicios}")
+                                value = treino
+                            }
+                    }
                 }
-            }
-    }
+        }
 
 
-    private fun getAllTreino() {
+    fun getAllTreino(): LiveData<List<Treino>> = MutableLiveData<List<Treino>>().apply {
         firestore.collection("treino")
             .addSnapshotListener { snapShot, _ ->
                 snapShot?.let {
                     val treinoList: List<Treino> = snapShot.documents.mapNotNull {
                         it.toObject<TreinoDocument>()?.toTreino(it.id)
                     }
-                    Log.i(TAG, "onViewCreated: $treinoList")
+                    value = treinoList
                 }
             }
     }
@@ -54,7 +55,7 @@ class TreinosRepository(
             collection.document(id)
         } ?: collection.document()
 
-        document.set(treino)
+        document.set(treinoDocument)
 
         value = document.id
     }

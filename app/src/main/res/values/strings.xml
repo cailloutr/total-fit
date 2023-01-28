@@ -35,6 +35,9 @@
     <string name="bottom_navigation_title_treinos">Treinos</string>
     <string name="bottom_navigation_title_exercicios">Exercícios</string>
     <string name="bottom_navigation_title_profile">Perfil</string>
+    <string name="bottom_navigation_option_gallery">Galeria</string>
+    <string name="bottom_navigation_option_internet">Internet</string>
+
     <string name="fab_content_description">Botão adicionar novo item</string>
     <string name="fragment_new_exercicio_fab_content_description">Add a new image</string>
     <string name="lore_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at feugiat nulla. Mauris sed eros placerat, pulvinar neque at, rutrum dolor. Donec condimentum massa eu egestas pulvinar. Morbi est metus, elementum rutrum ultricies vitae, egestas vitae ipsum. Cras diam nunc, commodo quis iaculis ac, facilisis sed lorem. Donec ut ante porttitor urna venenatis pulvinar convallis nec sem. Sed nec egestas lorem. Sed commodo nunc odio. Cras egestas nisi lorem. Nullam turpis enim, commodo sit amet erat tempus, tincidunt iaculis metus. Donec justo libero, iaculis eget eros volutpat, dignissim bibendum ligula.
@@ -48,28 +51,43 @@ Fusce eu mi et nisl ornare volutpat a quis justo. Praesent accumsan, lectus ut l
 Suspendisse diam mi, hendrerit quis commodo molestie, pretium dictum odio. Mauris iaculis magna in placerat pellentesque. Cras convallis quam ut tempus porttitor. Nulla blandit eget diam vel fermentum. Sed maximus congue felis, et sollicitudin felis imperdiet vel. Cras ac semper est. Integer turpis lectus, tristique venenatis mollis eu, fringilla vel lectus. In in nulla iaculis, fringilla ipsum a, finibus mi. Praesent neque nibh, fringilla at nulla sit amet, imperdiet porttitor libero. Phasellus ultricies gravida justo in feugiat. Donec gravida consequat augue eu varius.
 
 </string>
+
     <string name="fragment_new_exercise_description_hint">Descriçao do Exercício</string>
     <string name="fragment_new_exercise_title_hint">Título</string>
     <string name="fragment_new_exercise_menu_save">Salvar</string>
-    <string name="bottom_navigation_option_gallery">Galeria</string>
-    <string name="bottom_navigation_option_internet">Internet</string>
+
+
+
     <string name="bottom_sheet_menu_label">Escolha a opção</string>
+
     <string name="load_image_from_web_image_view_content_description">Imagem ilustrativa do produto</string>
     <string name="load_image_from_web_dialog_text_input_hint_url">URL da imagem</string>
     <string name="load_image_from_web_button_label">Carregar</string>
+
     <string name="cancel">Cancelar</string>
+
     <string name="load_image_dialog_confirm_label">Confirmar</string>
+
     <string name="exercises_fragment_simple_callback_on_swipe_delete">Item deletado</string>
     <string name="exercises_fragment_simple_callback_on_swipe_undo">Desfazer</string>
+
     <string name="slide_to_delete_label">Deslize para a direita para deletar</string>
+
     <string name="fragment_new_exercise_image_view_content_description">Imagem ilustrativa do exercício</string>
     <string name="fragment_new_treino_name_hint">Nome do treino</string>
     <string name="fragment_new_treino_description_hint">Descrição do treino</string>
     <string name="fragment_new_treino_date_hint">Data do treino</string>
+    <string name="fragment_treinos_fab">Novo treino</string>
+
     <string name="input_layout_date_end_icon_content_description">Abre o seletor de data</string>
     <string name="date_picker_label">Selecione uma data</string>
-    <string name="fragment_treinos_fab">Novo treino</string>
     <string name="exercicio_item_button_content_description">Botão para adicionar exercicio ao treino</string>
     <string name="fragment_new_exercicio_list_label">Clique para adicionar um exercício</string>
+
+    <string name="treino_item_name">Treino: %s</string>
+    <string name="treino_item_description">Descrição: %s</string>
+    <string name="treino_item_data">Data: %s</string>
+    <string name="treino_item_exercicios_label">Exercicios:</string>
+    <string name="treino_item_image_view_content_description">Imagem indicando uma ação de click</string>
 
 </resources>

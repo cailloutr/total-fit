@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.totalfit.databinding.FragmentTreinosBinding
 import com.example.totalfit.ui.BaseFragment
+import com.example.totalfit.ui.viewmodel.TreinosViewModel
 import com.example.totalfit.ui.viewmodel.UiStateViewModel
 import com.example.totalfit.ui.viewmodel.VisualComponents
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 //private const val TAG = "TreinosFragment"
@@ -19,6 +21,7 @@ class TreinosFragment : BaseFragment() {
     val binding get() = _binding!!
 
     private val uiStateViewModel: UiStateViewModel by activityViewModel()
+    private val treinosViewModel: TreinosViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,11 +44,29 @@ class TreinosFragment : BaseFragment() {
 //            Log.i(TAG, "Observe: $it")
 //        }
 
-        binding.fragmentTreinosFab.setOnClickListener {
-            findNavController().navigate(
-                TreinosFragmentDirections.actionTreinosFragmentToNewTreinoFragment(null)
-            )
+        val adapter = TreinosAdapter(
+            requireContext()
+        ) {
+            it.id?.let { id ->
+                navigateToNewTreinoFragment(id)
+            }
         }
+
+        binding.fragmentTreinosRecyclerView.adapter = adapter
+
+        treinosViewModel.listOfTreinos.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
+        binding.fragmentTreinosFab.setOnClickListener {
+            navigateToNewTreinoFragment(null)
+        }
+    }
+
+    private fun navigateToNewTreinoFragment(id: String?) {
+        findNavController().navigate(
+            TreinosFragmentDirections.actionTreinosFragmentToNewTreinoFragment(id)
+        )
     }
 
     override fun onDestroyView() {

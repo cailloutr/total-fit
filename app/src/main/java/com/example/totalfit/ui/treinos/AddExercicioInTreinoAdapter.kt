@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.totalfit.databinding.ExercicioInTreinoItemBinding
 import com.example.totalfit.model.Exercicio
+import com.example.totalfit.model.Treino
 
 private const val TAG = "Adapter"
 
@@ -21,7 +22,8 @@ class AddExercicioInTreinoAdapter(
 ) :
     ListAdapter<Exercicio, AddExercicioInTreinoAdapter.ExercicioListViewHolder>(diffCallback) {
 
-    private val itemStateArray = SparseBooleanArray()
+    var treino: Treino? = null
+    var itemStateArray = SparseBooleanArray()
 
     inner class ExercicioListViewHolder(
         val binding: ExercicioInTreinoItemBinding
@@ -85,6 +87,18 @@ class AddExercicioInTreinoAdapter(
             listOfItem.add(currentList[key].id.toString())
         }
         return listOfItem
+    }
+
+    fun listOfIdsToSparseBooleanArray(list: List<String>): SparseBooleanArray{
+        val sparseBooleanArray = SparseBooleanArray()
+        for (treino in currentList) {
+            for (id in list) {
+                if (id == treino.id) {
+                    sparseBooleanArray.put(currentList.indexOf(treino), true)
+                }
+            }
+        }
+        return sparseBooleanArray
     }
 
     companion object {

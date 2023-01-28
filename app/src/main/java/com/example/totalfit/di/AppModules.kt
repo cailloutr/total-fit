@@ -15,6 +15,7 @@ import com.example.totalfit.ui.login.SignInFragment
 import com.example.totalfit.ui.profile.ProfileFragment
 import com.example.totalfit.ui.treinos.AddExercicioInTreinoAdapter
 import com.example.totalfit.ui.treinos.NewTreinoFragment
+import com.example.totalfit.ui.treinos.TreinosAdapter
 import com.example.totalfit.ui.treinos.TreinosFragment
 import com.example.totalfit.ui.viewmodel.*
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +33,7 @@ val uiModule = module {
     factory<LoadImageUrlDialog> { LoadImageUrlDialog(get(), get()) }
     factory<ExercisesFragment> { ExercisesFragment() }
     factory<ExercisesAdapter> { ExercisesAdapter(get()) }
+    factory<TreinosAdapter> { TreinosAdapter(get(), get()) }
     factory<AddExercicioInTreinoAdapter> { AddExercicioInTreinoAdapter(get()) }
     factory<NewExerciseFragment> { NewExerciseFragment() }
     factory<LoginFragment> { LoginFragment() }
@@ -55,6 +57,7 @@ val viewModelModule = module {
     viewModel<ExerciciosViewModel> { ExerciciosViewModel(get()) }
     viewModel<NewExerciseViewModel> { NewExerciseViewModel(get()) }
     viewModel<NewTreinoViewModel> { NewTreinoViewModel(get(), get()) }
+    viewModel<TreinosViewModel> { TreinosViewModel(get()) }
 }
 
 val firebaseModule = module {

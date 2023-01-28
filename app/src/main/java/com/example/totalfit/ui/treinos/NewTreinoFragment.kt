@@ -14,8 +14,10 @@ import com.example.totalfit.databinding.FragmentNewTreinoBinding
 import com.example.totalfit.extension.snackbar
 import com.example.totalfit.model.Treino
 import com.example.totalfit.ui.viewmodel.NewTreinoViewModel
+import com.example.totalfit.ui.viewmodel.TreinosViewModel
 import com.example.totalfit.ui.viewmodel.UiStateViewModel
 import com.example.totalfit.ui.viewmodel.VisualComponents
+import com.example.totalfit.util.CALENDAR_NUMBER
 import com.example.totalfit.util.MyMaskEditText
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
@@ -35,6 +37,7 @@ class NewTreinoFragment : Fragment() {
 
     private val uiStateViewModel: UiStateViewModel by activityViewModel()
     private val newTreinoViewModel: NewTreinoViewModel by inject()
+    private val treinoViewModel: TreinosViewModel by inject()
 
     private val args: NewTreinoFragmentArgs by navArgs()
 
@@ -55,9 +58,24 @@ class NewTreinoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         uiStateViewModel.hasComponents = VisualComponents(appBar = true)
 
-        setupDateEditText()
-        setupAdapter()
+        if (treinoId != null) {
+            treinoViewModel.getById(treinoId!!).observe(viewLifecycleOwner) { treino ->
+                setupAdapter(treino)
+                binding.apply {
+                    newTreinoInputLayoutName.editText?.setText(treino.nome)
+                    newTreinoInputLayoutDescription.editText?.setText(treino.descricao)
+                    newTreinoInputLayoutDate.editText?.setText(treino.getFormattedDate(
+                        CALENDAR_NUMBER
+                    ))
+                }
 
+                newTreinoViewModel.listOfExercicioNoTreino = treino.exercicios
+            }
+        } else {
+            setupAdapter()
+        }
+
+        setupDateEditText()
         setupAppBarMenu()
     }
 
@@ -103,18 +121,22 @@ class NewTreinoFragment : Fragment() {
         }
     }
 
-    private fun setupAdapter() {
+    private fun setupAdapter(treino: Treino? = null) {
         val adapter = AddExercicioInTreinoAdapter {
             newTreinoViewModel.listOfExercicioNoTreino = it
             Log.i(TAG, "setupAdapter: ${newTreinoViewModel.listOfExercicioNoTreino}")
-//            it.id?.let { id ->
-//                newTreinoViewModel.listOfExercicioNoTreino.add(id)
-//            }
         }
+
         binding.fragmentNewTreinoRecyclerView.adapter = adapter
         newTreinoViewModel.listExercicios.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            adapter.treino = treino
+            treino?.exercicios?.let { list ->
+                adapter.itemStateArray = adapter.listOfIdsToSparseBooleanArray(list)
+            }
         }
+
+
     }
 
     private fun setupDateEditText() {

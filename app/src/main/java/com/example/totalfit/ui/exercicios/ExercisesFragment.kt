@@ -52,9 +52,13 @@ class ExercisesFragment : BaseFragment() {
         setupUiState()
         setupAdapter()
 
+        navigateToNewExercicioFragment(null)
+    }
+
+    private fun navigateToNewExercicioFragment(id: String?) {
         binding.floatActionButton.setOnClickListener {
             findNavController().navigate(
-                ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment(null)
+                ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment(id)
             )
         }
     }
@@ -62,9 +66,10 @@ class ExercisesFragment : BaseFragment() {
     private fun setupAdapter() {
         adapter = ExercisesAdapter {
             it.id?.let { id ->
-                findNavController().navigate(
-                    ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment(id)
-                )
+//                findNavController().navigate(
+//                    ExercisesFragmentDirections.actionExercisesFragmentToNewExercicioFragment(id)
+//                )
+                navigateToNewExercicioFragment(id)
             }
         }
         binding.fragmentExercisesRecyclerView.adapter = adapter
