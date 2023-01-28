@@ -59,4 +59,16 @@ class TreinosRepository(
 
         value = document.id
     }
+
+    fun remove(exercicioId: String): LiveData<Boolean> = MutableLiveData<Boolean>().apply {
+        firestore.collection(FIRESTORE_COLLECTION_PATH)
+            .document(exercicioId)
+            .delete()
+            .addOnSuccessListener {
+                value = true
+            }
+            .addOnFailureListener {
+                value = false
+            }
+    }
 }

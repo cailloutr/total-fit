@@ -12,4 +12,6 @@ class TreinosViewModel(
     val listOfTreinos: LiveData<List<Treino>> = treinosRepository.getAllTreino()
 
     fun getById(id: String): LiveData<Treino> = treinosRepository.getById(id)
+
+    fun remove(exercicioId: String): LiveData<Boolean> = treinosRepository.remove(exercicioId)
 }
