@@ -11,7 +11,8 @@ class NewExerciseViewModel(
     private val repository: ExerciciosRepository
 ) : ViewModel() {
 
-    var imageUrl: Uri? = null
+    var oldImageUrl: Uri? = null
+    var newImageUrl: Uri? = null
 
     fun getById(id: String): LiveData<Exercicio> = repository.getById(id)
 
@@ -29,4 +30,10 @@ class NewExerciseViewModel(
 
             value = true
         }
+
+    fun update(exercicio: Exercicio): LiveData<Boolean> = MutableLiveData<Boolean>().apply {
+        repository.update(exercicio)
+
+        value = true
+    }
 }

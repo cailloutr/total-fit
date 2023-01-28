@@ -60,8 +60,8 @@ class NewExerciseFragment : BaseFragment() {
                 // photo picker.
                 if (uri != null) {
                     Log.d("PhotoPicker", "Selected URI: $uri")
-                    viewModel.imageUrl = uri
-                    loadImage(viewModel.imageUrl,binding.fragmentNewExerciseImageView)
+                    viewModel.newImageUrl = uri
+                    loadImage(viewModel.newImageUrl,binding.fragmentNewExerciseImageView)
                 } else {
                     Log.d("PhotoPicker", "No media selected")
                 }
@@ -79,11 +79,14 @@ class NewExerciseFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        uiStateViewModel.hasComponents = VisualComponents()
-
+        setupUiComponents()
         loadExerciseDataIntoTheViews()
         setupToolbar()
         setupNewImageFab()
+    }
+
+    private fun setupUiComponents() {
+        uiStateViewModel.hasComponents = VisualComponents()
     }
 
     private fun loadExerciseDataIntoTheViews() {
@@ -97,6 +100,7 @@ class NewExerciseFragment : BaseFragment() {
                     )
 
                     loadImage(it.imageUrl, binding.fragmentNewExerciseImageView)
+                    viewModel.oldImageUrl = it.imageUrl
                 }
             }
         }
@@ -140,7 +144,7 @@ class NewExerciseFragment : BaseFragment() {
             observacoes = description
         )
 
-        if (viewModel.imageUrl != null) {
+        if (viewModel.newImageUrl != null && viewModel.newImageUrl != viewModel.oldImageUrl) {
             saveWithImage(exercicio)
         } else {
             saveWithoutImage(exercicio)
@@ -149,7 +153,7 @@ class NewExerciseFragment : BaseFragment() {
     }
 
     private fun saveWithoutImage(exercicio: Exercicio) {
-        viewModel.saveWithoutImage(exercicio).observe(viewLifecycleOwner) { repositoryState ->
+        viewModel.update(exercicio).observe(viewLifecycleOwner) { repositoryState ->
             repositoryState?.let {
                 if (it) {
                     binding.root.snackbar("Exercício salvo")
@@ -191,8 +195,8 @@ class NewExerciseFragment : BaseFragment() {
                     )
                 } else {
                     LoadImageUrlDialog { uri ->
-                        viewModel.imageUrl = uri
-                        binding.fragmentNewExerciseImageView.load(viewModel.imageUrl)
+                        viewModel.newImageUrl = uri
+                        binding.fragmentNewExerciseImageView.load(viewModel.newImageUrl)
                     }.show(parentFragmentManager, LoadImageUrlDialog.TAG)
                 }
             }.show(

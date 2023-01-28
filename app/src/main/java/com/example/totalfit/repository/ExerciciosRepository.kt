@@ -41,6 +41,19 @@ class ExerciciosRepository(
             }
     }
 
+    fun update(exercicio: Exercicio) = MutableLiveData<String>().apply {
+        val collection = firestore.collection(FIRESTORE_COLLECTION_PATH)
+        exercicio.id?.let { id ->
+            val map = mapOf(
+                "nome" to exercicio.nome,
+                "observacoes" to exercicio.observacoes
+            )
+            collection.document(id)
+                .update(map)
+
+        }
+    }
+
     fun save(exercicio: Exercicio) = MutableLiveData<String>().apply {
         val exercicioDocument = ExercicioDocument(
             nome = exercicio.nome,
@@ -90,8 +103,4 @@ class ExerciciosRepository(
             }
 
         }
-
-//    companion object {
-//        private const val FIRESTORE_COLLECTION_PATH = "exercicios"
-//    }
 }

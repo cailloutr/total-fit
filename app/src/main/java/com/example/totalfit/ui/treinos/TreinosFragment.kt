@@ -7,10 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.totalfit.databinding.FragmentTreinosBinding
+import com.example.totalfit.enums.OperationState
 import com.example.totalfit.model.Treino
 import com.example.totalfit.ui.BaseFragment
 import com.example.totalfit.ui.viewmodel.TreinosViewModel
@@ -29,6 +32,9 @@ class TreinosFragment : BaseFragment() {
 
     private val uiStateViewModel: UiStateViewModel by activityViewModel()
     private val treinosViewModel: TreinosViewModel by inject()
+
+    private val _state: MutableLiveData<OperationState> = MutableLiveData<OperationState>()
+    val state: LiveData<OperationState> = _state
 
     private lateinit var adapter: TreinosAdapter
 
@@ -71,11 +77,41 @@ class TreinosFragment : BaseFragment() {
         itemTouchHelper.attachToRecyclerView(binding.fragmentTreinosRecyclerView)
 
         treinosViewModel.listOfTreinos.observe(viewLifecycleOwner) {
+            defineOperationStateValue(it)
+
+            state.observe(viewLifecycleOwner) { operationState ->
+                showProgressBar(operationState)
+            }
+
             adapter.submitList(it)
         }
 
         binding.fragmentTreinosFab.setOnClickListener {
             navigateToNewTreinoFragment(null)
+        }
+    }
+
+    private fun defineOperationStateValue(list: List<Treino>) {
+        when (list.size) {
+            0 -> {
+                _state.value = OperationState.LOADING
+            }
+            else -> {
+                _state.value = OperationState.FINISHED
+            }
+        }
+    }
+
+    private fun showProgressBar(operationState: OperationState) {
+        when (operationState) {
+            OperationState.LOADING -> {
+                binding.fragmentTreinosRecyclerView.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
+            }
+            OperationState.FINISHED -> {
+                binding.fragmentTreinosRecyclerView.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
+            }
         }
     }
 
