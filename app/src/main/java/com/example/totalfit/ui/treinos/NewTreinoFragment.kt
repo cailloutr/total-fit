@@ -58,15 +58,23 @@ class NewTreinoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         uiStateViewModel.hasComponents = VisualComponents(appBar = true)
 
+        loadTreinoDataIntoTheView()
+        setupDateEditText()
+        setupAppBarMenu()
+    }
+
+    private fun loadTreinoDataIntoTheView() {
         if (treinoId != null) {
             treinoViewModel.getById(treinoId!!).observe(viewLifecycleOwner) { treino ->
                 setupAdapter(treino)
                 binding.apply {
                     newTreinoInputLayoutName.editText?.setText(treino.nome)
                     newTreinoInputLayoutDescription.editText?.setText(treino.descricao)
-                    newTreinoInputLayoutDate.editText?.setText(treino.getFormattedDate(
-                        CALENDAR_NUMBER
-                    ))
+                    newTreinoInputLayoutDate.editText?.setText(
+                        treino.getFormattedDate(
+                            CALENDAR_NUMBER
+                        )
+                    )
                 }
 
                 newTreinoViewModel.listOfExercicioNoTreino = treino.exercicios
@@ -74,9 +82,6 @@ class NewTreinoFragment : Fragment() {
         } else {
             setupAdapter()
         }
-
-        setupDateEditText()
-        setupAppBarMenu()
     }
 
     private fun setupAppBarMenu() {

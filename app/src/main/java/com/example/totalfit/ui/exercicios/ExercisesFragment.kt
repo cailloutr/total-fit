@@ -148,19 +148,15 @@ class ExercisesFragment : BaseFragment() {
                 .setAction(getString(com.example.totalfit.R.string.exercises_fragment_simple_callback_on_swipe_undo)) {
                     undoDeleteItem(position, deletedItem)
                 }.addCallback(object : Snackbar.Callback() {
-                    override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                        super.onDismissed(transientBottomBar, event)
+                override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                    super.onDismissed(transientBottomBar, event)
 
-                        if (!undoAction) {
-                            deletedItem.id?.let { exerciciosViewModel.remove(it) }
-                        }
-                        undoAction = false
+                    if (!undoAction) {
+                        deletedItem.id?.let { exerciciosViewModel.remove(it) }
                     }
-
-                    override fun onShown(sb: Snackbar?) {
-                        super.onShown(sb)
-                    }
-                })
+                    undoAction = false
+                }
+            })
             snackBar.show()
         }
 
