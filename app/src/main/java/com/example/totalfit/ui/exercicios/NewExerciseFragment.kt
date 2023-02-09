@@ -113,7 +113,7 @@ class NewExerciseFragment : BaseFragment() {
                 fallback(R.drawable.ic_image)
                 crossfade(true)
                 error(R.drawable.ic_exercise)
-                allowHardware(true)
+                allowHardware(false)
             }
             scaleType = ImageView.ScaleType.CENTER_CROP
         }
