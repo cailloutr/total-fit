@@ -12,7 +12,7 @@ Aplicativo para gestão de treinos e exercícios físicos
 
 ## Capturas de tela
 
-<img src="https://raw.githubusercontent.com/cailloutr/total-fit/main/screenshots/TreinosScreen.png#vitrinedev" style="width: 390px; height: 844px; display: flex;#vitrinedev"/> <img src="screenshots/NovoTreinoScreen.png" style="width: 390px; height: 844px;"/> <img src="screenshots/ExercicioScreen.png" style="width: 390px; height: 844px;"/> <img src="screenshots/NovoExercicioScreen.png" style="width: 390px; height: 844px;"/> <img src="screenshots/PerfilScreen.png" style="width: 390px; height: 844px;"/>
+<img src="https://raw.githubusercontent.com/cailloutr/total-fit/main/screenshots/TreinosScreen.png#vitrinedev" style="width: 390px; height: 844px; display: flex;"/> <img src="screenshots/NovoTreinoScreen.png" style="width: 390px; height: 844px;"/> <img src="screenshots/ExercicioScreen.png" style="width: 390px; height: 844px;"/> <img src="screenshots/NovoExercicioScreen.png" style="width: 390px; height: 844px;"/> <img src="screenshots/PerfilScreen.png" style="width: 390px; height: 844px;"/>
 
 ## Detalhes do projeto
 
